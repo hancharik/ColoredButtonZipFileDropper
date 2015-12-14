@@ -27,9 +27,14 @@ public class DropPanel extends JPanel{
     
           public static ArrayList<String> contents = new ArrayList<String>();
       public static final javax.swing.JTextArea text = new javax.swing.JTextArea();
+       String zipFilePath = "";
+        public static String destDirectory = "C:\\Users\\Mark\\Desktop\\bucket";
+        UnzipUtility unzipper = new UnzipUtility();
+        
+        
         
        public static String  rootFolder = "";
-       public static String  tempFolder = " C:\\Users\\Mark\\AppData\\Local\\Temp\\";
+      // public static String  tempFolder = " C:\\Users\\Mark\\AppData\\Local\\Temp\\";
        
       // public static JPanel p;// = new JPanel(); 
          public static SmartButton[] studentButtonArray;
@@ -107,7 +112,11 @@ public class DropPanel extends JPanel{
                         
                         
                            
-                            rootFolder = files[i].getCanonicalPath();
+                        rootFolder = files[i].getCanonicalPath();
+                        
+                        zipFilePath = rootFolder;
+                        
+                        createClassFolder();
     
                         readZipFile(files[i].getCanonicalPath());
        
@@ -141,7 +150,9 @@ public class DropPanel extends JPanel{
           
             SmartButton thisButton = (SmartButton) evt.getSource();
             try {
-                readZipFile(shortenString(rootFolder)+ "\\" + thisButton.getName());
+                System.out.println("Contentes of " + destDirectory + "\\" + thisButton.getName() + ":");
+                readZipFile(destDirectory + "\\" + thisButton.getName());
+                //readZipFile(shortenString(rootFolder)+ "\\" + thisButton.getName());
             } catch (IOException ex) {
                 Logger.getLogger(ClassCreator.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -221,7 +232,19 @@ public class DropPanel extends JPanel{
       
       return shorterString;
   }  // end shorthen string
-    
+ 
+  
+  // this unzips the file and creates a folder under the main working program directory
+    public void createClassFolder(){
+      
+      try {
+            unzipper.unzip(zipFilePath, destDirectory);
+        } catch (Exception ex) {
+            // some errors occurred
+            ex.printStackTrace();
+        }
+  }  // end shorthen string
+ 
     
     
 }  // end

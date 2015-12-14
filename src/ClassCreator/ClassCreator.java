@@ -33,6 +33,10 @@ public class ClassCreator {
     /** Runs a sample program that shows dropped files */
     public static void main( String[] args )
     {
+        
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        
+        
         javax.swing.JFrame frame = new javax.swing.JFrame( "Class Creator Demo" );
         javax.swing.border.TitledBorder dragBorder = new javax.swing.border.TitledBorder( "Drop 'em" );
       
