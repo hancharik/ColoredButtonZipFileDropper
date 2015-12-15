@@ -6,6 +6,7 @@
 package ClassCreator;
 
 
+import java.util.ArrayList;
 import javax.swing.*;
 
 
@@ -13,7 +14,7 @@ import javax.swing.*;
 
 public class SmartButton extends JButton{
    
- 
+  public ArrayList<String> files;// = new ArrayList<String>();
     private int number;
     private String name;
     
@@ -22,7 +23,7 @@ public class SmartButton extends JButton{
     public SmartButton(){
         super();
         this.setVisible(true);
-        
+        files = new ArrayList<String>();
     }
     
    public void setId(int n){

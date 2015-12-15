@@ -25,20 +25,20 @@ import javax.swing.JPanel;
  */
 public class DropPanel extends JPanel{
     
-          public static ArrayList<String> contents = new ArrayList<String>();
-      public static final javax.swing.JTextArea text = new javax.swing.JTextArea();
+          public  ArrayList<String> contents = new ArrayList<String>();
+      public  final javax.swing.JTextArea text = new javax.swing.JTextArea();
        String zipFilePath = "";
-        public static String destDirectory = "C:\\Users\\Mark\\Desktop\\bucket";
+        public  String destDirectory = "C:\\Users\\Mark\\Desktop\\bucket";
         UnzipUtility unzipper = new UnzipUtility();
         
         
         
-       public static String  rootFolder = "";
+       public  String  rootFolder = "";
       // public static String  tempFolder = " C:\\Users\\Mark\\AppData\\Local\\Temp\\";
        
       // public static JPanel p;// = new JPanel(); 
-         public static SmartButton[] studentButtonArray;
-         public static JPanel colored;
+         public  SmartButton[] studentButtonArray;
+         public  JPanel colored;
     
     
     public DropPanel(){
@@ -52,7 +52,7 @@ public class DropPanel extends JPanel{
     
     
        
-   private static JPanel createResultButtons(int numberOfStudents){
+   private  JPanel createResultButtons(int numberOfStudents){
     
      
   
@@ -145,12 +145,21 @@ public class DropPanel extends JPanel{
     
     
  // i just cut and pasted the control button listener and adapted it for the student button array
-     public static class StudentButtonListener implements ActionListener{ // i'm pretty sure this is from Fred's IST 311 class
+     public  class StudentButtonListener implements ActionListener{ // i'm pretty sure this is from Fred's IST 311 class
         public void actionPerformed(ActionEvent evt){
           
             SmartButton thisButton = (SmartButton) evt.getSource();
             try {
-                System.out.println("Contentes of " + destDirectory + "\\" + thisButton.getName() + ":");
+                String temp1 = destDirectory + "\\" + thisButton.getName();
+                
+              //  System.out.println("Contents of " + destDirectory + "\\" + thisButton.getName() + ":");
+                String tempString = destDirectory + "\\" + thisButton.getName();
+                tempString = tempString.split("/", 2)[0];
+           
+              //  System.out.println("Contents of tempstring: " + tempString);
+              //  System.out.println("Contents of temp1: " + temp1);
+                  temp1 = temp1.replace(tempString, "");
+                // System.out.println("Updated Contents of temp1: " + temp1);
                 readZipFile(destDirectory + "\\" + thisButton.getName());
                 //readZipFile(shortenString(rootFolder)+ "\\" + thisButton.getName());
             } catch (IOException ex) {
@@ -161,7 +170,7 @@ public class DropPanel extends JPanel{
     } // end studentButtonListener
  
  
-  public static void readZipFile(String file) throws IOException{
+  public void readZipFile(String file) throws IOException{
       
                             text.setText(null);     
                             contents.clear();
@@ -172,17 +181,19 @@ public class DropPanel extends JPanel{
         ZipEntry entry = entries.nextElement();
         contents.add(entry.toString());
     }
-    
-        for(int k = 0; k < contents.size(); k++){
+    //text.append( "contents of " +contents.get(0) + "\n" ); 
+        for(int k = 0; k < contents.size(); k++){// for(int k = 1; k < contents.size(); k++){
                             
-                          text.append( contents.get(k) + "\n" ); 
+                          text.append( contents.get(k) + "\n" ); // text.append( getTopFileFromString(contents.get(k)) + "\n" ); 
                        }
                        
           
   }  // end read zip file 
    
   
-    public static void createButtons(){
+  
+  
+    public void createButtons(){
                         //http://mathbits.com/MathBits/Java/Graphics/Color.htm
                         int R = (int) (Math.random( )*256);
                         int G = (int)(Math.random( )*256);
@@ -201,22 +212,7 @@ public class DropPanel extends JPanel{
                      
                         colored.removeAll();
                         colored.add(createResultButtons(contents.size()));
-                        
-                        //colored.setBackground(randomColor3);//.removeAll();
-                     //   p.repaint();
-                     //colored = createResultButtons(6);   
-                 //colored = createResultButtons(contents.size());
-                  // frame.getContentPane().remove(text);      
-                        
-                   
-                  // p.add(createResultButtons(contents.size()));
-                   
-                   
-                   
-                   
-                      //   frame.getContentPane().add( p , java.awt.BorderLayout.CENTER );
-                        
-                        
+           
                         
        }  // end create buttons                 
   
@@ -224,7 +220,7 @@ public class DropPanel extends JPanel{
 
     
   
-  public static String shortenString(String input){
+  public String shortenString(String input){
       
       String shorterString = input.substring(0, input.length()-4);
       
@@ -245,6 +241,20 @@ public class DropPanel extends JPanel{
         }
   }  // end shorthen string
  
-    
+    public  String getTopFileFromString(String temp1){
+        
+          String temp11 = temp1;
+               // for (int i = 0; i < 3; i++){ 
+                while (temp11.contains("/")){
+                
+                
+                String tempString2 = temp11;
+                tempString2 = tempString2.split("/", 2)[0]; //get everything before the first slash
+                tempString2 = tempString2 + "/";  // add the slash
+                temp11 = temp11.replace(tempString2, ""); //remove the first folder including the slash
+                
+                }
+            return temp11;
+    } // end get top file from string    
     
 }  // end
