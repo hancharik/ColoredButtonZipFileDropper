@@ -27,7 +27,7 @@ import javax.swing.JPanel;
  */
 public class ClassCreator {
 
-        static DropPanel p;// = new DropPanel();
+        static DropPanel2 p;// = new DropPanel();
  
     
     /** Runs a sample program that shows dropped files */
@@ -40,7 +40,7 @@ public class ClassCreator {
         javax.swing.JFrame frame = new javax.swing.JFrame( "Class Creator Demo" );
         javax.swing.border.TitledBorder dragBorder = new javax.swing.border.TitledBorder( "Drop 'em" );
       
-        p = new DropPanel();
+        p = new DropPanel2();
         
         frame.getContentPane().add( 
             new javax.swing.JScrollPane( p ), 

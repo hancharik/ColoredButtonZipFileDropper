@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -23,7 +24,7 @@ import javax.swing.JPanel;
  *
  * @author Mark
  */
-public class DropPanel extends JPanel{
+public class DropPanel2 extends JPanel{
     
           public  ArrayList<String> contents = new ArrayList<String>();
       public  final javax.swing.JTextArea text = new javax.swing.JTextArea();
@@ -46,7 +47,7 @@ public class DropPanel extends JPanel{
          public  JPanel colored;
     
     
-    public DropPanel(){
+    public DropPanel2(){
         
         super();
          workingDirectoryUpOne = workingDirectoryUpOne.replace( "ClassCreator", "");
@@ -87,7 +88,7 @@ public class DropPanel extends JPanel{
                         b.setName(contents.get(i));
                        //    b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
                         b.setBackground(randomButtonColor);
-                        b.addActionListener(new DropPanel.StudentButtonListener());
+                        b.addActionListener(new DropPanel2.StudentButtonListener());
                         studentButtonArray[i] = b;
                         p1.add(b);
     }
@@ -106,7 +107,7 @@ public class DropPanel extends JPanel{
        add(text);
         colored = new JPanel();
         colored.setLayout(new GridLayout(1 ,1));
-        colored.setBackground(Color.red);
+        colored.setBackground(Color.blue);
     //  colored = createResultButtons(4);
         add(colored);
     
@@ -117,7 +118,7 @@ public class DropPanel extends JPanel{
                 {   try
                     { 
                         
-                        
+                        // studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
                            
                         rootFolder = files[i].getCanonicalPath();
                         
@@ -181,7 +182,7 @@ public class DropPanel extends JPanel{
       
                             text.setText(null);     
                             contents.clear();
-               
+             
     ZipFile zipFile = new ZipFile(file);
     Enumeration<? extends ZipEntry> entries = zipFile.entries();
     while(entries.hasMoreElements()){
@@ -192,7 +193,11 @@ public class DropPanel extends JPanel{
         for(int k = 0; k < contents.size(); k++){// for(int k = 1; k < contents.size(); k++){
                             
                           text.append( contents.get(k) + "\n" ); // text.append( getTopFileFromString(contents.get(k)) + "\n" ); 
-                       }
+                          String fullZipFile = destDirectory + "\\" + contents.get(k);
+                          System.out.println("Unzipping "  + fullZipFile);
+                         unzipper.unzip(fullZipFile, destDirectory + "\\testClass1");
+                       
+        }
                        
           
   }  // end read zip file 
@@ -224,7 +229,16 @@ public class DropPanel extends JPanel{
        }  // end create buttons                 
   
       
-
+public void unZipInnerFiles(){
+    
+    for(int i = 0; i < contents.size(); i++){
+       
+        
+        
+        
+    }
+    
+}
     
   
   public String shortenString(String input){
