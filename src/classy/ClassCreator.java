@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ClassCreator;
+package classy;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -28,12 +28,12 @@ import javax.swing.JPanel;
 public class ClassCreator {
 
         static DropPanel2 p;// = new DropPanel();
- 
+ public static String namBre;// = "";
     
     /** Runs a sample program that shows dropped files */
     public static void main( String[] args )
     {
-        
+        namBre = "haldrexson";
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         
         

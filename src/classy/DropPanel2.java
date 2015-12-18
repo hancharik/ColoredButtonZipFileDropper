@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ClassCreator;
+package classy;
 
 
 import java.awt.Color;
@@ -121,7 +121,12 @@ public class DropPanel2 extends JPanel{
                         // studentprogramtester.App.thisIsWhereYouPutTheMainFile = files[i].getCanonicalPath() +  "\\"; // need to add the slash here or it breaks
                            
                         rootFolder = files[i].getCanonicalPath();
-                        
+                         rootFolder = rootFolder.replace(File.separator, "/"); 
+                        classy.ClassCreator.namBre = shortenString(getTopFileFromString(rootFolder));
+                         System.out.println("Get namBre from string: " + getTopFileFromString(classy.ClassCreator.namBre));
+                         System.out.println("OUR OLD CLASS NAME IS: " + rootFolder);
+                       //   rootFolder = getTopFileFromString(rootFolder);
+                       //  System.out.println("OUR nEW CLASS NAME IS: (classy.ClassCreator.namBre) " + classy.ClassCreator.namBre);
                         zipFilePath = rootFolder;
                         
                         createClassFolder();
@@ -160,15 +165,17 @@ public class DropPanel2 extends JPanel{
             try {
                 String temp1 = destDirectory + "\\" + thisButton.getName();
                 
-              //  System.out.println("Contents of " + destDirectory + "\\" + thisButton.getName() + ":");
+                System.out.println("Contents of " + destDirectory + "\\" + thisButton.getName() + ":");
                 String tempString = destDirectory + "\\" + thisButton.getName();
                 tempString = tempString.split("/", 2)[0];
            
-              //  System.out.println("Contents of tempstring: " + tempString);
-              //  System.out.println("Contents of temp1: " + temp1);
+               System.out.println("Contents of tempstring: " + tempString);
+               System.out.println("Contents of temp1: " + temp1);
                   temp1 = temp1.replace(tempString, "");
-                // System.out.println("Updated Contents of temp1: " + temp1);
+                 System.out.println("Updated Contents of temp1: " + temp1);
                 readZipFile(destDirectory + "\\" + thisButton.getName());
+                
+                System.out.println("Get namBre from string: " + getTopFileFromString(classy.ClassCreator.namBre));
                 //readZipFile(shortenString(rootFolder)+ "\\" + thisButton.getName());
             } catch (IOException ex) {
                 Logger.getLogger(ClassCreator.class.getName()).log(Level.SEVERE, null, ex);
@@ -262,7 +269,7 @@ public void unZipInnerFiles(){
         }
   }  // end shorthen string
  
-    public  String getTopFileFromString(String temp1){
+    public String getTopFileFromString(String temp1){
         
           String temp11 = temp1;
                // for (int i = 0; i < 3; i++){ 
@@ -276,7 +283,7 @@ public void unZipInnerFiles(){
                 
                 }
             return temp11;
-    } // end get top file from string    
+    } // end get top file from string
     
     
   public void unzipEverythingInside(String file){
