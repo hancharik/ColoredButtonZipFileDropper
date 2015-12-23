@@ -9,10 +9,11 @@ package classy;
 import java.util.ArrayList;
 import javax.swing.*;
 
-
-
-
-public class SmartButton extends JButton{
+/**
+ *
+ * @author Mark
+ */
+public class SmartButton extends RoundButton{
    
   public ArrayList<String> files;// = new ArrayList<String>();
     private int number;

@@ -42,7 +42,7 @@ public class DropPanel extends JPanel{
       // public static String  tempFolder = " C:\\Users\\Mark\\AppData\\Local\\Temp\\";
        
       // public static JPanel p;// = new JPanel(); 
-         public  SmartButton[] studentButtonArray;
+         public  RoundButton[] studentButtonArray;
          public  JPanel colored;
     
     
@@ -65,6 +65,7 @@ public class DropPanel extends JPanel{
   
              
     JPanel p1 = new JPanel(); 
+   
     int rowNumber = 7;
     int dividedBySeven = (numberOfStudents/rowNumber) + 1;
     //p.setLayout(new GridLayout((numberOfStudents/7)+1,7));
@@ -73,9 +74,9 @@ public class DropPanel extends JPanel{
     }else{
     p1.setLayout(new GridLayout(dividedBySeven ,rowNumber));
     }
-    studentButtonArray = new SmartButton[numberOfStudents];
+    studentButtonArray = new RoundButton[numberOfStudents];
     for(int i = 0; i < studentButtonArray.length; i++){
-        SmartButton b = new SmartButton();
+        RoundButton b = new RoundButton();
        // b.setText(contents.get(i));
         // b.setText("" + i);
            
@@ -86,18 +87,23 @@ public class DropPanel extends JPanel{
                         b.setText( R + "," + G + "," + B );  // this is informativ if you are interested in a particular color, shos the values
                         b.setName(contents.get(i));
                        //    b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
-                        b.setBackground(randomButtonColor);
+                        b.setBackground(randomColor());
                         b.addActionListener(new DropPanel.StudentButtonListener());
                         studentButtonArray[i] = b;
                         p1.add(b);
     }
      
-     
+      p1.setBackground(randomColor());
      return p1;
                 
               
  }  // end create result buttons   
 
+   
+   
+   
+   
+   
     private  void createPanel() {
                 
       
@@ -155,7 +161,7 @@ public class DropPanel extends JPanel{
      public  class StudentButtonListener implements ActionListener{ // i'm pretty sure this is from Fred's IST 311 class
         public void actionPerformed(ActionEvent evt){
           
-            SmartButton thisButton = (SmartButton) evt.getSource();
+            RoundButton thisButton = (RoundButton) evt.getSource();
             try {
                 String temp1 = destDirectory + "\\" + thisButton.getName();
                 
@@ -210,16 +216,16 @@ public class DropPanel extends JPanel{
                          Color randomColor3 = new Color(R, G, B);
                       // this sets a new text color for every file drop  
                       text.setForeground(randomColor1);
-                       text.setBackground(randomColor2);
+                       text.setBackground(randomColor());
                        // text.append( "r " + R + "g " + G + "b " + B + "\n" );    
-                     text.append( "Here's the created class ("  + contents.size() + " students)\n" );    
+                    // text.append( "Here's the created class ("  + contents.size() + " students)\n" );    
 
 
                         
                      
                         colored.removeAll();
                         colored.add(createResultButtons(contents.size()));
-           
+           colored.setBackground(randomColor());
                         
        }  // end create buttons                 
   
@@ -271,7 +277,21 @@ public class DropPanel extends JPanel{
   }  
     
     
+       
+      public static Color randomColor(){
+                        //http://mathbits.com/MathBits/Java/Graphics/Color.htm
+                        int red = (int) (Math.random( )*256);
+                        int green = (int)(Math.random( )*256);
+                        int blue = (int)(Math.random( )*256);
+                        
+                       Color randomColor = new Color(red, green, blue);
+                       
+                 return randomColor;   
+       }  // end random color      
     
+    
+    
+     
     
     
 }  // end
