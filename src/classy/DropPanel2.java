@@ -87,7 +87,12 @@ public class DropPanel2 extends JPanel{
                         b.setText( R + "," + G + "," + B );  // this is informativ if you are interested in a particular color, shos the values
                         b.setName(contents.get(i));
                        //    b.setName(shortenString(rootFolder)+ "\\" + tempFolder + contents.get(i));
-                        b.setBackground(randomButtonColor);
+                       // b.setBackground(randomButtonColor);
+                        int hundred = (int)(Math.random( )*100 + 1);
+                       // b.setBackground(intToCol(i*(100/studentButtonArray.length)));
+                       // b.setBackground(intToCol(100)); // test for black
+                         b.setBackground(intToCol(0)); // test for white
+                        b.setBorderPainted(false);
                         b.addActionListener(new DropPanel2.StudentButtonListener());
                         studentButtonArray[i] = b;
                         p1.add(b);
@@ -217,7 +222,9 @@ public class DropPanel2 extends JPanel{
                         int R = (int) (Math.random( )*256);
                         int G = (int)(Math.random( )*256);
                         int B= (int)(Math.random( )*256);
+                        
                         Color randomColor1 = new Color(13, 222, 61);
+                        
                         Color randomColor2 = new Color(0, 0, 0);
                          Color randomColor3 = new Color(R, G, B);
                       // this sets a new text color for every file drop  
@@ -292,7 +299,12 @@ public void unZipInnerFiles(){
   }  
     
     
-    
-    
+   // http://stackoverflow.com/questions/2780546/converting-a-number-to-a-greyscale-color-in-java
+    // this takes an int and converts it to a grayscale, 0 is white, 100 is black
+Color intToCol(int colNum)
+{
+  int rgbNum = 255 - (int) ((colNum/100.0)*255.0);
+  return new Color (rgbNum,rgbNum,rgbNum);
+}
     
 }  // end

@@ -13,8 +13,8 @@ import javax.swing.*;
  *
  * @author Mark
  */
-public class SmartButton extends RoundButton{
-   
+//public class SmartButton extends RoundButton{
+public class SmartButton extends JButton{   
   public ArrayList<String> files;// = new ArrayList<String>();
     private int number;
     private String name;
