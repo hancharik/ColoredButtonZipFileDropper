@@ -301,7 +301,7 @@ public void unZipInnerFiles(){
     
    // http://stackoverflow.com/questions/2780546/converting-a-number-to-a-greyscale-color-in-java
     // this takes an int and converts it to a grayscale, 0 is white, 100 is black
-Color intToCol(int colNum)
+public Color intToCol(int colNum)  // needs to be an int from 0 - 100
 {
   int rgbNum = 255 - (int) ((colNum/100.0)*255.0);
   return new Color (rgbNum,rgbNum,rgbNum);
